@@ -18,8 +18,7 @@
         "ENABLE_GOOGLE_AUTHENTIFICATION": "true",
         "ENABLE_MICROSOFT_AUTHENTIFICATION": "true",
         "GOOGLE_AUTH_CLIENT_ID": "117146803281-gfphm2idbuv9108i2fl7uke9q2kuaac8.apps.googleusercontent.com",
-        "MICROSOFT_CLIENT_ID": "cb0f4ed4-86bd-4a33-abf3-f3633731fb42",
-        "MICROSOFT_PROVIDER_AUTHENTICATION_SECRET": "AOJ8Q~hQTMDjaOpD2JrvRHi1McA1g-xgFOXFWcbp"
+        "MICROSOFT_CLIENT_ID": "cb0f4ed4-86bd-4a33-abf3-f3633731fb42"
       }
     },
     "https": {

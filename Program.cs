@@ -65,7 +65,7 @@ finally
     .AddOpenIdConnect(options =>
     {
         options.ClientId = builder.Configuration["MICROSOFT_CLIENT_ID"] ?? "aa";
-        options.ClientSecret = builder.Configuration["MICROSOFT_PROVIDER_AUTHENTICATION_SECRET"] ?? "bb";
+        options.ClientSecret = builder.Configuration["microsoft-provider-auth-secret"] ?? "bb";
         options.Authority = $"https://login.microsoftonline.com/common/v2.0";
         options.CallbackPath = "/Index";
 

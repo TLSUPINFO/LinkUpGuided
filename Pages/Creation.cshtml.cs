@@ -36,9 +36,9 @@ public class CreationModel : PageModel
 
     public IActionResult OnGet()
     {
-        //IIdentity identity = User?.Identity;
-        //if (identity == null || !identity.IsAuthenticated)
-        //    return RedirectToPage($"/Index");
+        IIdentity identity = User?.Identity;
+        if (identity == null || !identity.IsAuthenticated)
+            return RedirectToPage($"/Index");
 
         currentID = -1;
         return Page();

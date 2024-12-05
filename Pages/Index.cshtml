@@ -1,0 +1,55 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!-- MAIN (Center website) -->
+<div class="main">
+<h1>Publications</h1>
+<hr>
+<div id="myBtnContainer">
+  <button class="btn active" onclick="filterSelection('all')"> All</button>
+  <button class="btn" onclick="filterSelection('owned')"> Owned</button>
+  <button class="btn" onclick="filterSelection('other')"> Other</button>
+</div>
+
+<!-- Portfolio Gallery Grid -->
+<div class="row">
+    @foreach (var publication in Model.Publications)
+    {
+        <div class="column">
+            <div class="content">
+                @if(publication.IsVideo)
+                {
+                    <video src="@publication.MediaUrl" title="@publication.Title" style="width:100%" controls>
+                        Your browser does not support the video tag.
+                    </video>
+                }
+                else
+                {
+                    <img src="@publication.MediaUrl" alt="@publication.Title" style="width:100%"/>
+                }
+                <h5>@publication.Title <span style="font-size: 12px; color: gray; font-weight: normal;">from @publication.Author</span> </h5>
+                <p>@publication.Description</p>
+                <p style="font-size: 12px; color: gray; font-weight: normal;">@publication.ModifyDate.UtcDateTime</p>
+                <!-- Boutons d'action -->
+                @if(publication.Owned)
+                {
+                    <form method="post" enctype="multipart/form-data" asp-page-handler="ModifyPublication">
+                        <button type="submit" name="ID" value="@publication.ID">Modify</button>
+                    </form>
+
+                    <form method="post" enctype="multipart/form-data" asp-page-handler="DeletePublication">
+                        <button name="publicationID" value="@publication.ID">Delete</button>
+                    </form>
+                }
+
+            </div>
+        </div>
+    }
+    <!-- END GRID -->
+</div>
+<!-- END MAIN -->
+</div>
+

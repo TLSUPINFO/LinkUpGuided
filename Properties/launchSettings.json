@@ -1,0 +1,49 @@
+{
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:15643",
+      "sslPort": 44320
+    }
+  },
+  "profiles": {
+    "http": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "http://localhost:5223",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENABLE_GOOGLE_AUTHENTIFICATION": "true",
+        "ENABLE_MICROSOFT_AUTHENTIFICATION": "true",
+        "GOOGLE_AUTH_CLIENT_ID": "117146803281-gfphm2idbuv9108i2fl7uke9q2kuaac8.apps.googleusercontent.com",
+        "AZURE_CLIENT_ID": "5d63f122-e14d-47ad-b627-88ca83f4db88"
+      }
+    },
+    "https": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "applicationUrl": "https://localhost:7189",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENABLE_GOOGLE_AUTHENTIFICATION": "true",
+        "ENABLE_MICROSOFT_AUTHENTIFICATION": "true",
+        "GOOGLE_AUTH_CLIENT_ID": "117146803281-gfphm2idbuv9108i2fl7uke9q2kuaac8.apps.googleusercontent.com",
+        "AZURE_CLIENT_ID": "5d63f122-e14d-47ad-b627-88ca83f4db88"
+      }
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "ENABLE_GOOGLE_AUTHENTIFICATION": "true",
+        "ENABLE_MICROSOFT_AUTHENTIFICATION": "true",
+        "GOOGLE_AUTH_CLIENT_ID": "117146803281-gfphm2idbuv9108i2fl7uke9q2kuaac8.apps.googleusercontent.com",
+        "AZURE_CLIENT_ID": "5d63f122-e14d-47ad-b627-88ca83f4db88"
+      }
+    }
+  }
+}

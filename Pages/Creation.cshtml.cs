@@ -36,9 +36,9 @@ public class CreationModel : PageModel
 
     public IActionResult OnGet()
     {
-        IIdentity identity = User?.Identity;
-        if (identity == null || !identity.IsAuthenticated)
-            return RedirectToPage($"/Index");
+        //IIdentity identity = User?.Identity;
+        //if (identity == null || !identity.IsAuthenticated)
+        //    return RedirectToPage($"/Index");
 
         currentID = -1;
         return Page();
@@ -100,7 +100,7 @@ public class CreationModel : PageModel
 
             httpClient.DefaultRequestHeaders.Add("ID", hashID);
 
-            HttpResponseMessage response = await httpClient.PostAsync(/*"http://localhost:7071/api/UploadPublication"*/_configuration["function-uploadpublication-url"], content);
+            HttpResponseMessage response = await httpClient.PostAsync("https://linkupfunctionappguided.azurewebsites.net/api/UploadPublication?code=2nhNca2ItVjBkhDpLitjYCX-NGfpfvSU8ZEL4baGpFaAAzFu9i2L0g%3D%3D"/*_configuration["function-uploadpublication-url"]*/, content);
             if (response.IsSuccessStatusCode)
                 return RedirectToPage($"/Index");
             else
@@ -121,7 +121,7 @@ public class CreationModel : PageModel
             httpClient.DefaultRequestHeaders.Add("ID", hashID);
             httpClient.DefaultRequestHeaders.Add("PublicationID", currentID.ToString());
 
-            HttpResponseMessage response = await httpClient.PutAsync(/*"http://localhost:7071/api/ModifyPublication"*/_configuration["function-modifypublication-url"], content);
+            HttpResponseMessage response = await httpClient.PutAsync("https://linkupfunctionappguided.azurewebsites.net/api/ModifyPublication?code=_2L3ZodGx6IDZ9DTSPmdYjFR6tNA355cdP2zK9-n-cC_AzFuMgfUlw%3D%3D"/*_configuration["function-modifypublication-url"]*/, content);
             if (response.IsSuccessStatusCode)
                 return RedirectToPage($"/Index");
             else

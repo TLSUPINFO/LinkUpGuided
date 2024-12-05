@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using static System.Net.WebRequestMethods;
 
 namespace webapp_sam_lab13.Pages;
 
@@ -13,17 +14,12 @@ public class IndexModel : PageModel
     private readonly ILogger<IndexModel> _logger;
     private readonly IConfiguration _configuration;
 
-    public string StartError => ErrorLinkUp.Error?.Message;
-
-    public string Message => ErrorLinkUp.Message;
 
     public bool IsAuthenticated { get; set; } = false;
 
     public IndexModel(ILogger<IndexModel> logger, IConfiguration configuration)
     {
         _logger = logger;
-        if (ErrorLinkUp.Error != null)
-            _logger.LogError(ErrorLinkUp.Error.Message);
 
         _configuration = configuration;
     }
@@ -55,7 +51,7 @@ public class IndexModel : PageModel
             httpClient.DefaultRequestHeaders.Add("ID", hashID);
             httpClient.DefaultRequestHeaders.Add("PublicationID", publicationID.ToString());
 
-            HttpResponseMessage response = await httpClient.DeleteAsync(/*"http://localhost:7071/api/DelPublication"*/_configuration["function-deletepublication-url"]);
+            HttpResponseMessage response = await httpClient.DeleteAsync("https://linkupfunctionappguided.azurewebsites.net/api/DelPublication?code=riYr_VYmn9zoWgrws8Yz2vEt1bHOcbBbTg26ZLNiZRE0AzFuQAv6ng%3D%3D"/*_configuration["function-deletepublication-url"]*/);
 
             if (response.IsSuccessStatusCode)
                 return RedirectToPage($"/Index");
@@ -88,7 +84,7 @@ public class IndexModel : PageModel
             }
 
             httpClient.DefaultRequestHeaders.Add("PublicPost", "true");
-            HttpResponseMessage response = await httpClient.GetAsync(/*"http://localhost:7071/api/GetPublications"*/_configuration["function-getpublications-url"]);
+            HttpResponseMessage response = await httpClient.GetAsync("https://linkupfunctionappguided.azurewebsites.net/api/GetPublications?code=UoBd7sgnZqkooRL-AlDdRJXvlb3Sj5qF9DWfzZIrS9eqAzFuvItvzA%3D%3D"/*_configuration["function-getpublications-url"]*/);
 
             if (response.IsSuccessStatusCode)
             {
@@ -104,7 +100,6 @@ public class IndexModel : PageModel
             else
             {
                 string errorMessage = await response.Content.ReadAsStringAsync();
-                ErrorLinkUp.Message = errorMessage;
             }
         }
     }

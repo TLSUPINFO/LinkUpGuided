@@ -12,10 +12,10 @@ builder.Configuration.AddEnvironmentVariables();
 
 try
 {
-    //if (builder.Configuration["ASPNETCORE_ENVIRONMENT"] == "Development")
-    //    builder.Configuration.AddAzureKeyVault(new Uri("https://linkupkeysvault.vault.azure.net/"), new DefaultAzureCredential());
-    //else
-    //    builder.Configuration.AddAzureKeyVault(new Uri("https://linkupkeysvault.vault.azure.net/"), new ManagedIdentityCredential());
+    if (builder.Configuration["ASPNETCORE_ENVIRONMENT"] == "Development")
+        builder.Configuration.AddAzureKeyVault(new Uri("https://linkupguidedkeyvaults.vault.azure.net/"), new DefaultAzureCredential());
+    else
+        builder.Configuration.AddAzureKeyVault(new Uri("https://linkupguidedkeyvaults.vault.azure.net/"), new ManagedIdentityCredential());
 }
 catch(Exception exception)
 {
@@ -91,21 +91,21 @@ finally
             },
         };
 
-        //options.Events = new OpenIdConnectEvents
-        //{
-        //    OnTokenResponseReceived = context =>
-        //    {
-        //        var accessToken = context.TokenEndpointResponse.AccessToken;
+        options.Events = new OpenIdConnectEvents
+        {
+            OnTokenResponseReceived = context =>
+            {
+                var accessToken = context.TokenEndpointResponse.AccessToken;
 
-        //        var identity = context.Principal.Identity as ClaimsIdentity;
-        //        if (identity != null && accessToken != null)
-        //        {
-        //            identity.AddClaim(new Claim("access_token", builder.Configuration["access-token-function-app"]));
-        //        }
+                var identity = context.Principal.Identity as ClaimsIdentity;
+                if (identity != null && accessToken != null)
+                {
+                    identity.AddClaim(new Claim("access_token", builder.Configuration["access-token-function-app"]));
+                }
 
-        //        return Task.CompletedTask;
-        //    }
-        //};
+                return Task.CompletedTask;
+            }
+        };
     });
 
     builder.Services.AddSession(options =>
